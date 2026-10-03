@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SafeLift 360 — Training Simulation</title>
+
+    <!-- Pannellum -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         STARTING PAGE
+    =========================================== -->
+
+    <div id="startScreen" class="start-screen">
+
+        <div class="start-content">
+
+            <div class="start-badge">
+                SAFETY TRAINING
+            </div>
+
+            <h1>
+                Manual Handling<br>
+                Safety Training
+            </h1>
+
+            <p class="start-description">
+                Learn how to identify hazards, assess loads,
+                and handle materials safely in the workplace.
+            </p>
+
+            <div class="training-info">
+
+                <div class="info-item">
+                    <strong>3</strong>
+                    <span>Scenarios</span>
+                </div>
+
+                <div class="info-divider"></div>
+
+                <div class="info-item">
+                    <strong>Interactive</strong>
+                    <span>Training</span>
+                </div>
+
+            </div>
+
+            <div class="assessment-notice">
+                <div class="notice-title">⚠️ Assessment Notice</div>
+                <p>
+                    The Safety Precautions section is part of the 100-mark assessment.
+                    Reviewing the Safety Precautions is worth 10 marks.
+                </p>
+            </div>
+
+            <button id="startTrainingBtn" class="start-button">
+                START TRAINING
+                <span>→</span>
+            </button>
+
+            <p class="start-note">
+                Explore the warehouse and complete all three
+                scenarios to finish the training.
+            </p>
+
+            <div class="login-portal-link-wrap">
+                <a href="dashboard.html" class="portal-dashboard-btn">← Dashboard</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         TRAINING SCREEN
+    =========================================== -->
+
+    <div id="trainingScreen">
+
+        <!-- TOP BAR -->
+
+        <header class="top-bar">
+
+            <div class="logo">
+                🏗️
+                <span>SafeLift 360</span>
+            </div>
+
+            <div class="progress-hud">
+
+                <div id="scenarioProgressCount" class="progress-count">
+                    Scenarios: 0 / 3
+                </div>
+
+                <div id="scenarioChecklist" class="scenario-checklist">
+                    <span id="checkItem1" class="checklist-item">
+                        <span class="check-icon">○</span> Load Inspection
+                    </span>
+                    <span id="checkItem2" class="checklist-item">
+                        <span class="check-icon">○</span> Route Check
+                    </span>
+                    <span id="checkItem3" class="checklist-item">
+                        <span class="check-icon">○</span> Safe Lift
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="top-stats">
+
+                <div id="userBadge" class="user-badge" style="display: none;">
+                    <span class="user-icon">👤</span>
+                    <span id="userNameDisplay" class="user-name">Operator</span>
+                    <button id="historyBtn" class="top-history-btn" title="View Training History">📜 History</button>
+                    <button id="logoutBtn" class="top-logout-btn" title="Logout">Logout 🚪</button>
+                </div>
+
+                <div id="trainingTimer" class="training-timer">
+                    <span class="timer-icon">⏱</span>
+                    <span id="timerDisplay">00:00</span>
+                </div>
+
+                <div class="score-hud">
+                    <span class="score-hud-label">Assessment Score</span>
+                    <strong id="score" class="score">0 / 100</strong>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PANORAMA -->
+
+        <div id="panorama"></div>
+
+
+        <!-- QUESTION PANEL -->
+
+        <div id="questionPanel" class="question-panel">
+
+            <div class="panel-badge-row">
+                <span id="challengeBadge" class="challenge-badge">
+                    MANUAL HANDLING
+                </span>
+            </div>
+
+            <h2 id="challengeTitle">
+                Find the load
+            </h2>
+
+            <p id="challengeSubtitle" class="challenge-subtitle"></p>
+
+            <!-- COMPACT ASSESSMENT STATUS -->
+            <div id="assessmentStatus" class="assessment-status-bar">
+                <div class="status-chip">
+                    <span class="chip-label">Marks Available</span>
+                    <strong id="statusMarks" class="chip-val">30</strong>
+                </div>
+                <div class="status-divider"></div>
+                <div class="status-chip">
+                    <span class="chip-label">Attempt</span>
+                    <strong id="statusAttempt" class="chip-val">1 of 4</strong>
+                </div>
+                <div class="status-divider"></div>
+                <div class="status-chip">
+                    <span class="chip-label">Attempts Remaining</span>
+                    <strong id="statusRemaining" class="chip-val">4</strong>
+                </div>
+            </div>
+
+            <p id="questionText">
+                🔎 Look around the warehouse.
+                Find the training box and click it
+                to begin the load inspection.
+            </p>
+
+            <div id="answers"></div>
+
+        </div>
+
+
+        <!-- FEEDBACK -->
+
+        <div id="feedback" class="feedback">
+
+            <h2 id="feedbackTitle"></h2>
+
+            <p id="feedbackMessage"></p>
+
+            <div id="feedbackButtons">
+
+                <button id="nextButton" class="next-button" onclick="proceedToVideo()">
+                    Watch Training Video
+                </button>
+
+                <button id="retryButton" class="retry-button" onclick="retryQuestion()">
+                    Retry
+                </button>
+
+                <button id="exitButton" class="exit-button" onclick="exitTraining()">
+                    Exit Training
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         TRAINING VIDEO
+    =========================================== -->
+
+    <div id="videoModal" class="video-modal">
+
+        <div class="video-card">
+
+            <div class="video-header">
+
+                <div>
+
+                    <span id="videoBadge" class="video-badge">
+                        TRAINING REVIEW COMPLETE
+                    </span>
+
+                    <h2 id="videoTitle">
+                        Correct Answer
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <video id="trainingVideo" controls playsinline preload="metadata">
+                Your browser does not support the video element.
+            </video>
+
+
+            <p id="videoMessage" class="video-message">
+                Watch the training video before continuing.
+            </p>
+
+            <div id="videoTimerNotice" class="video-timer-notice">
+                ⏸ Training timer paused while you watch this learning video.
+            </div>
+
+            <div class="video-actions">
+
+                <button id="nextVideoButton" class="next-button" onclick="continueAfterVideo()">
+                    Continue
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         ENDING PAGE
+    =========================================== -->
+
+    <div id="endScreen" class="end-screen">
+
+        <div class="end-content">
+
+            <div class="completion-icon">
+                ✓
+            </div>
+
+            <div class="end-badge">
+                TRAINING COMPLETE
+            </div>
+
+            <h1>
+                Well Done!
+            </h1>
+
+            <p class="end-description">
+                You have successfully completed all three
+                manual handling safety scenarios.
+            </p>
+
+
+            <div class="completion-stats">
+
+                <div class="completion-stat">
+
+                    <strong id="finalScenarios">3 / 3</strong>
+
+                    <span>
+                        Scenarios
+                    </span>
+
+                </div>
+
+
+                <div class="completion-divider"></div>
+
+
+                <div class="completion-stat">
+
+                    <strong id="finalScore">0 / 100</strong>
+
+                    <span>
+                        Overall Score
+                    </span>
+
+                </div>
+
+
+                <div class="completion-divider"></div>
+
+
+                <div class="completion-stat">
+
+                    <strong id="finalAccuracy">0%</strong>
+
+                    <span>
+                        Score %
+                    </span>
+
+                </div>
+
+
+                <div class="completion-divider"></div>
+
+
+                <div class="completion-stat">
+
+                    <strong id="finalTime">00:00</strong>
+
+                    <span>
+                        Total Time
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- ASSESSMENT BREAKDOWN -->
+            <div class="assessment-breakdown-card">
+                <div class="breakdown-heading">Assessment Breakdown</div>
+                <div class="breakdown-grid">
+                    <div class="breakdown-row">
+                        <span class="breakdown-label">Load Inspection</span>
+                        <span id="breakdownLoad" class="breakdown-val">0 / 30</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span class="breakdown-label">Route Check</span>
+                        <span id="breakdownRoute" class="breakdown-val">0 / 30</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span class="breakdown-label">Safe Lift</span>
+                        <span id="breakdownLift" class="breakdown-val">0 / 30</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span class="breakdown-label">Safety Precautions</span>
+                        <span id="breakdownSafety" class="breakdown-val">0 / 10</span>
+                    </div>
+                    <div class="breakdown-row breakdown-total">
+                        <span class="breakdown-label">Total</span>
+                        <span id="breakdownTotal" class="breakdown-val">0 / 100</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="completion-message">
+
+                <strong id="performanceHeadline">
+                    Safety starts with awareness.
+                </strong>
+
+                <p id="performanceMessage">
+                    Remember to assess the load, check your route,
+                    and use safe handling techniques.
+                </p>
+
+            </div>
+
+
+            <!-- COMPLETION ACTION BUTTONS -->
+            <div class="completion-actions-wrap"
+                style="display: flex; gap: 14px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 24px;">
+                <button type="button" id="returnDashboardBtn" onclick="window.location.href='dashboard.html'"
+                    class="btn-return-dashboard">
+                    ← Return to Dashboard
+                </button>
+                <button type="button" onclick="restartTraining()" class="btn-restart-training">
+                    🔄 Restart Training
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         TRAINING HISTORY MODAL (STAGE 4.2)
+    =========================================== -->
+    <div id="historyModal" class="history-modal-overlay" style="display: none;">
+        <div class="history-modal-card">
+            <div class="history-modal-header">
+                <div class="history-header-title">
+                    <span class="history-header-icon">📜</span>
+                    <h2>Training History</h2>
+                </div>
+                <button id="closeHistoryBtn" class="history-close-btn" title="Close History">&times;</button>
+            </div>
+            <div id="historyModalContent" class="history-modal-body">
+                <!-- Dynamic content (Loading / Empty / Results / Error) -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

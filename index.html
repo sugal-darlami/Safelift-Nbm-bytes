@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SafeLift 360 — Workplace Safety Training Platform</title>
+    <meta name="description" content="SafeLift 360 is an interactive 360° workplace safety training SaaS platform helping organizations train employees, assess knowledge, track results, and issue digital certificates.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Our Commercial Landing Page Styles -->
+    <link rel="stylesheet" href="landing.css">
+</head>
+
+<body>
+
+    <!-- Background Backdrop & Glow Effects -->
+    <div class="landing-backdrop"></div>
+    <div class="ambient-light"></div>
+
+    <!-- ==========================================
+         SECTION 1 — NAVIGATION
+    =========================================== -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="brand-logo" id="brandLogo">
+                <div class="brand-icon">🛡️</div>
+                <div class="brand-text">SafeLift <span>360</span></div>
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#hero" class="nav-link">Home</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                    <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="login.html" class="nav-login-btn" id="navLoginBtn">Login</a>
+                <a href="register.html" class="btn btn-primary" id="navRegisterBtn">Register Your Company</a>
+            </div>
+
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+                ☰
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#hero" class="nav-link mobile-link">Home</a>
+            <a href="#features" class="nav-link mobile-link">Features</a>
+            <a href="#how-it-works" class="nav-link mobile-link">How It Works</a>
+            <a href="#pricing" class="nav-link mobile-link">Pricing</a>
+            <a href="#about" class="nav-link mobile-link">About</a>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="register.html" class="btn btn-primary">Register Your Company</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         SECTION 2 — HERO
+    =========================================== -->
+    <section id="hero" class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="section-badge">
+                    <span class="pulse-dot"></span>
+                    WORKPLACE SAFETY TRAINING SAAS
+                </div>
+                <h1>
+                    Workplace Safety Training, <span class="gradient-text">Reimagined</span>
+                </h1>
+                <p class="hero-subtitle">
+                    SafeLift 360 provides immersive, interactive 360° workplace safety training that enables organizations to effectively train employees, assess practical knowledge, track compliance, and issue verifiable digital certificates.
+                </p>
+
+                <div class="hero-pills">
+                    <span class="pill-tag"><span>✓</span> Interactive 360° Training</span>
+                    <span class="pill-tag"><span>✓</span> Hazard Identification</span>
+                    <span class="pill-tag"><span>✓</span> Assessment & Scoring</span>
+                    <span class="pill-tag"><span>✓</span> Employee Progress Tracking</span>
+                    <span class="pill-tag"><span>✓</span> Digital Certificates</span>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="register.html" class="btn btn-primary" id="heroRegisterCta">
+                        Register Your Company →
+                    </a>
+                    <a href="login.html" class="btn btn-secondary" id="heroLoginCta">
+                        Login
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="visual-card">
+                    <div class="visual-header">
+                        <div class="visual-dots">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <div class="visual-badge">
+                            <span class="pulse-dot"></span> 360° LIVE WAREHOUSE SIMULATION
+                        </div>
+                    </div>
+
+                    <div class="visual-img-wrap">
+                        <img src="assets/warehouse.jpg" alt="SafeLift 360 Warehouse Training Environment">
+                        <div class="visual-hotspot">
+                            <span class="visual-hotspot-badge">HOTSPOT</span>
+                            <span>Load Inspection Hazard Spotting</span>
+                        </div>
+                    </div>
+
+                    <div class="visual-stats-bar">
+                        <div class="visual-stat-item">
+                            <strong>360°</strong>
+                            <span>Immersive View</span>
+                        </div>
+                        <div class="visual-stat-item">
+                            <strong>100 Marks</strong>
+                            <span>Assessment Engine</span>
+                        </div>
+                        <div class="visual-stat-item">
+                            <strong>Instant</strong>
+                            <span>PDF Verification</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3 — WHAT IS SAFELIFT 360?
+    =========================================== -->
+    <section id="about-platform" class="overview-section">
+        <div class="container">
+            <div class="overview-card">
+                <div class="overview-grid">
+                    <div class="overview-text">
+                        <div class="section-badge">PLATFORM OVERVIEW</div>
+                        <h3>The All-in-One Safety Training & Compliance Solution</h3>
+                        <p>
+                            SafeLift 360 is a modern workplace safety training platform designed specifically for industrial, warehouse, and logistics organizations. By replacing passive slides with interactive 360° scenarios, employees gain hands-on hazard awareness while safety teams gain real-time visibility into workforce competency.
+                        </p>
+                    </div>
+
+                    <div>
+                        <ul class="capability-list">
+                            <li class="capability-item">
+                                <span class="capability-icon">🏢</span>
+                                <span>Create a central company account</span>
+                            </li>
+                            <li class="capability-item">
+                                <span class="capability-icon">👥</span>
+                                <span>Manage workforce & employee profiles</span>
+                            </li>
+                            <li class="capability-item">
+                                <span class="capability-icon">🎯</span>
+                                <span>Assign interactive safety training</span>
+                            </li>
+                            <li class="capability-item">
+                                <span class="capability-icon">📊</span>
+                                <span>Track employee performance & scores</span>
+                            </li>
+                            <li class="capability-item">
+                                <span class="capability-icon">📈</span>
+                                <span>View detailed training results</span>
+                            </li>
+                            <li class="capability-item">
+                                <span class="capability-icon">📜</span>
+                                <span>Issue verifiable digital certificates</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 4 — FEATURES
+    =========================================== -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">CORE CAPABILITIES</div>
+                <h2>Engineered for Practical Workplace Safety</h2>
+                <p>Comprehensive features built to improve learning retention, streamline administration, and enforce compliance.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-box">🌐</div>
+                    <h3>Interactive 360° Training</h3>
+                    <p>Employees learn through an interactive 360° warehouse environment instead of reading traditional static training materials.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box">⚠️</div>
+                    <h3>Hazard Identification</h3>
+                    <p>Employees identify safety hazards, inspect loads, and check lifting routes through real-time interactive scenario hotspots.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box">📝</div>
+                    <h3>Assessments & Scoring</h3>
+                    <p>Employees answer practical multiple-choice questions and receive measurable, objective safety scores based on accuracy and attempts.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box">📈</div>
+                    <h3>Training Progress</h3>
+                    <p>Organizations can monitor individual employee training completion, time taken, score breakdowns, and attempt history.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box">📜</div>
+                    <h3>Digital Certificates</h3>
+                    <p>Employees who meet the required pass score receive downloadable, cryptographically verifiable PDF safety certificates.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon-box">🛡️</div>
+                    <h3>Administrative Oversight</h3>
+                    <p>Company administrators gain complete visibility to monitor employee training activity, pass rates, and compliance reporting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 5 — HOW IT WORKS
+    =========================================== -->
+    <section id="how-it-works" class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">SIMPLE IMPLEMENTATION</div>
+                <h2>How SafeLift 360 Works</h2>
+                <p>Four easy steps to elevate your workplace safety training program.</p>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="step-num">01</div>
+                    <h3>Register Your Company</h3>
+                    <p>Create your organization's SafeLift 360 account to access your central safety management portal.</p>
+                </div>
+
+                <div class="process-card">
+                    <div class="step-num">02</div>
+                    <h3>Set Up Your Workforce</h3>
+                    <p>Administrators can easily manage employee credentials, assign modules, and track onboarding status.</p>
+                </div>
+
+                <div class="process-card">
+                    <div class="step-num">03</div>
+                    <h3>Employees Complete Training</h3>
+                    <p>Employees explore interactive safety scenarios, review procedure videos, and answer assessment questions.</p>
+                </div>
+
+                <div class="process-card">
+                    <div class="step-num">04</div>
+                    <h3>Track & Certify</h3>
+                    <p>Organizations monitor real-time results while successful employees generate instant digital compliance certificates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 6 — WHY SAFELIFT 360
+    =========================================== -->
+    <section class="why-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">VALUE PROPOSITION</div>
+                <h2>Why Choose SafeLift 360?</h2>
+                <p>Modern safety compliance built for real operational impact.</p>
+            </div>
+
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon">💡</div>
+                    <div class="why-content">
+                        <h4>Interactive Learning</h4>
+                        <p>Higher engagement and practical retention through 360° visual decision-making.</p>
+                    </div>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">🏢</div>
+                    <div class="why-content">
+                        <h4>Centralized Employee Training</h4>
+                        <p>Manage all employee training histories and records in one secure location.</p>
+                    </div>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">🎯</div>
+                    <div class="why-content">
+                        <h4>Measurable Results</h4>
+                        <p>Quantifiable scoring system provides objective proof of employee understanding.</p>
+                    </div>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">📄</div>
+                    <div class="why-content">
+                        <h4>Digital Certification</h4>
+                        <p>Instant PDF certificate generation with QR code verification for audit readiness.</p>
+                    </div>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">📊</div>
+                    <div class="why-content">
+                        <h4>Easy Administrative Monitoring</h4>
+                        <p>Intuitive oversight dashboard for tracking workforce completion and compliance.</p>
+                    </div>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">💻</div>
+                    <div class="why-content">
+                        <h4>Modern Browser-Based Platform</h4>
+                        <p>Zero software installation required — runs directly in standard web browsers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 7 — PRICING
+    =========================================== -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">TRANSPARENT PRICING</div>
+                <h2>Simple, Predictable Plans</h2>
+                <p>Start modernizing your workplace safety training today with our pilot access program.</p>
+            </div>
+
+            <div class="pricing-wrap">
+                <div class="pricing-card">
+                    <div class="pricing-popular-tag">PILOT ACCESS</div>
+                    <h3>Free Pilot</h3>
+                    <div class="pricing-price">£0 <span>/ month</span></div>
+                    <p class="pricing-subtitle">Full access for evaluating organizations</p>
+
+                    <ul class="pricing-features">
+                        <li><span>✓</span> Interactive 360° Warehouse Training</li>
+                        <li><span>✓</span> Employee Account Management</li>
+                        <li><span>✓</span> Comprehensive Assessment & Scoring</li>
+                        <li><span>✓</span> Downloadable Digital PDF Certificates</li>
+                        <li><span>✓</span> Administrative Oversight Dashboard</li>
+                        <li><span>✓</span> Real-Time Result Persistence</li>
+                    </ul>
+
+                    <a href="register.html" class="btn btn-primary" id="pricingCta">
+                        Start Your Company →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 8 — ABOUT / MISSION
+    =========================================== -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-card">
+                <div class="section-badge">OUR MISSION</div>
+                <h3>Dedicated to Workplace Safety Education</h3>
+                <p>
+                    At SafeLift 360, our mission is to make workplace manual-handling and safety training engaging, practical, and measurable. We believe that interactive visual learning builds genuine hazard awareness, empowering organizations to protect their workforce while effortlessly maintaining compliance records.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 9 — FINAL CTA
+    =========================================== -->
+    <section class="final-cta-section">
+        <div class="container">
+            <div class="final-cta-box">
+                <h2>Ready to make workplace safety training more interactive?</h2>
+                <p>Join forward-thinking organizations delivering modern 360° workplace safety assessments.</p>
+                <div class="final-cta-buttons">
+                    <a href="register.html" class="btn btn-primary" id="bottomRegisterCta">Register Your Company →</a>
+                    <a href="login.html" class="btn btn-secondary" id="bottomLoginCta">Login</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 10 — FOOTER
+    =========================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-title">
+                        <span>🛡️</span> SafeLift 360
+                    </div>
+                    <p>Workplace Safety Training Platform</p>
+                </div>
+
+                <ul class="footer-nav">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-bottom">
+                <div>© 2026 SafeLift 360. All rights reserved.</div>
+                <div>Interactive Workplace Safety SaaS</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Nav Script -->
+    <script>
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('open');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('open');
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

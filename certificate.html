@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeLift 360 — Official Certificate of Completion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Certificate View Styles */
+        :root {
+            --emerald-main: #047857;
+            --emerald-light: #10b981;
+            --navy-dark: #0f172a;
+            --slate-muted: #475569;
+            --gold-accent: #d97706;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0b1020;
+            color: #1e293b;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Top Action Navigation Bar */
+        .action-bar {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 14px 20px;
+            border-radius: 14px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .action-bar-title {
+            color: #f8fafc;
+            font-size: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-btns {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-action {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #f8fafc;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-action:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+        }
+
+        .btn-download-pdf {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border: none;
+            color: #ffffff;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+        }
+
+        .btn-download-pdf:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.5);
+        }
+
+        /* Certificate Container Paper Frame */
+        .cert-frame {
+            width: 100%;
+            max-width: 900px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            padding: 24px;
+            position: relative;
+            box-sizing: border-box;
+            background-image: radial-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Certificate Inner Border */
+        .cert-inner-border {
+            border: 4px double var(--emerald-main);
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cert-header-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--emerald-main);
+        }
+
+        .cert-header-badge span {
+            font-size: 26px;
+        }
+
+        .cert-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--emerald-main);
+            letter-spacing: 0.08em;
+        }
+
+        .cert-system-sub {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--slate-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-top: -10px;
+        }
+
+        .cert-main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--navy-dark);
+            margin-top: 10px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .cert-divider {
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--emerald-light), transparent);
+            margin: 4px 0;
+        }
+
+        .cert-certifies-text {
+            font-style: italic;
+            color: var(--slate-muted);
+            font-size: 14px;
+        }
+
+        .cert-recipient-name {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--navy-dark);
+            border-bottom: 2px solid var(--emerald-main);
+            padding-bottom: 6px;
+            padding-left: 24px;
+            padding-right: 24px;
+            min-width: 320px;
+            text-align: center;
+        }
+
+        .cert-course-intro {
+            font-size: 13px;
+            color: var(--slate-muted);
+            margin-top: 6px;
+        }
+
+        .cert-course-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--emerald-main);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .cert-score-box {
+            background: rgba(4, 120, 87, 0.06);
+            border: 1px solid rgba(4, 120, 87, 0.2);
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--navy-dark);
+        }
+
+        .cert-details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px 40px;
+            margin-top: 16px;
+            text-align: left;
+            width: 100%;
+            max-width: 600px;
+            font-size: 13px;
+            background: #f8fafc;
+            padding: 16px 20px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .detail-item span {
+            color: var(--slate-muted);
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .detail-item strong {
+            color: var(--navy-dark);
+            font-size: 14px;
+        }
+
+        .cert-footer-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .cert-sign-col {
+            text-align: left;
+        }
+
+        .cert-sign-line {
+            width: 180px;
+            height: 1px;
+            background: var(--slate-muted);
+            margin-bottom: 6px;
+        }
+
+        .cert-sign-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--navy-dark);
+        }
+
+        .cert-sign-sub {
+            font-size: 10px;
+            color: var(--slate-muted);
+        }
+
+        .cert-verify-col {
+            text-align: right;
+            font-size: 11px;
+            color: var(--slate-muted);
+        }
+
+        .cert-verify-col a {
+            color: var(--emerald-main);
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        /* Print Media Styles */
+        @media print {
+            body {
+                background: #ffffff;
+                padding: 0;
+            }
+            .action-bar {
+                display: none !important;
+            }
+            .cert-frame {
+                box-shadow: none;
+                max-width: 100%;
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Action Control Bar -->
+    <div class="action-bar">
+        <div class="action-bar-title">
+            <span>📜 SafeLift 360 Official Certificate</span>
+        </div>
+
+        <div class="action-btns">
+            <a href="dashboard.html" class="btn-action">🏠 Back to Dashboard</a>
+            <button type="button" class="btn-action" onclick="window.print()">🖨️ Print Certificate</button>
+            <button type="button" class="btn-action btn-download-pdf" id="downloadPdfBtn">📥 Download PDF</button>
+        </div>
+    </div>
+
+    <!-- Main Certificate Paper Frame -->
+    <div class="cert-frame">
+        <div class="cert-inner-border">
+            <div class="cert-header-badge">
+                <span>🏗️</span>
+                <div>
+                    <div class="cert-brand">SAFELIFT 360</div>
+                    <div class="cert-system-sub">Manual Handling Safety System</div>
+                </div>
+            </div>
+
+            <div class="cert-main-title">Certificate of Completion</div>
+            <div class="cert-divider"></div>
+
+            <div class="cert-certifies-text">This is to certify that</div>
+
+            <div class="cert-recipient-name" id="certRecipientName">Loading...</div>
+
+            <div class="cert-course-intro">has successfully completed the accredited training assessment for</div>
+
+            <div class="cert-course-title">Manual Handling Safety Training</div>
+
+            <div class="cert-score-box">
+                Final Score: <span id="certScoreDisplay" style="color: var(--emerald-main);">- / 100</span>
+                (<span id="certPctDisplay">-</span>)
+            </div>
+
+            <div class="cert-details-grid">
+                <div class="detail-item">
+                    <span>Certificate Number</span>
+                    <strong id="certNumberDisplay" style="color: #0369a1;">-</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Certificate Status</span>
+                    <strong id="certStatusDisplay" style="color: var(--emerald-main);">ISSUED</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Completion Date</span>
+                    <strong id="certCompletionDate">-</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Issue Date</span>
+                    <strong id="certIssueDate">-</strong>
+                </div>
+            </div>
+
+            <div class="cert-footer-row">
+                <div class="cert-sign-col">
+                    <div class="cert-sign-line"></div>
+                    <div class="cert-sign-title">SafeLift 360 Certification Board</div>
+                    <div class="cert-sign-sub">Workplace Safety & Hazard Compliance Authority</div>
+                </div>
+
+                <div class="cert-verify-col">
+                    <div>Verification Link:</div>
+                    <a id="certVerifyLink" href="#" target="_blank">Verify Online</a>
+                    <div style="font-size: 9px; color: #94a3b8; margin-top: 4px;" id="certUuidDisplay">UUID: -</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="certificate.js"></script>
+</body>
+</html>

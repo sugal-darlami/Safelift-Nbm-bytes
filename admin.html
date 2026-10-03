@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeLift 360 — Company Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+    <style>
+        /* Dedicated Company Admin Dashboard Layout Styles */
+        body {
+            background-color: #0b1020;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admin-layout {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px 20px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Admin Header */
+        .admin-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 18px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-badge {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+        }
+
+        .brand-text h1 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #f8fafc;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-text p {
+            font-size: 12px;
+            color: #10b981;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin: 2px 0 0;
+        }
+
+        .admin-user-nav {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .btn-back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #cbd5e1;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-back-home:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 14px;
+            border-radius: 10px;
+        }
+
+        .admin-avatar {
+            width: 28px;
+            height: 28px;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .admin-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        .btn-logout {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            color: #f87171;
+            padding: 9px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-logout:hover {
+            background: rgba(239, 68, 68, 0.25);
+            border-color: #ef4444;
+            color: #ffffff;
+        }
+
+        /* Navigation Tabs Bar */
+        .admin-nav-tabs {
+            display: flex;
+            gap: 10px;
+            background: rgba(17, 24, 39, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 8px;
+            border-radius: 14px;
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .nav-tab:hover {
+            color: #f8fafc;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+        }
+
+        /* Tab Pane visibility */
+        .tab-pane {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .tab-pane.hidden {
+            display: none !important;
+        }
+
+        /* Welcome Banner Card */
+        .welcome-banner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 16px;
+            padding: 24px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-banner h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #f8fafc;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+
+        .welcome-banner p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        /* Stat Cards Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .stat-card {
+            background: rgba(17, 24, 39, 0.82);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .stat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stat-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-icon {
+            font-size: 20px;
+            opacity: 0.85;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: #f8fafc;
+            line-height: 1;
+        }
+
+        /* Section Cards */
+        .admin-card {
+            background: rgba(17, 24, 39, 0.82);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card-header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+        }
+
+        /* Section Header Layout */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        /* Overview Grid */
+        .overview-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .overview-item {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .overview-item .item-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .overview-item .item-value {
+            font-size: 15px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+
+        .status-badge-approved {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #34d399;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            width: fit-content;
+        }
+
+        /* Stage Placeholders */
+        .placeholder-box {
+            text-align: center;
+            padding: 48px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+        }
+
+        .placeholder-icon {
+            font-size: 44px;
+        }
+
+        .placeholder-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin: 0;
+        }
+
+        .placeholder-text {
+            font-size: 14px;
+            color: #94a3b8;
+            max-width: 480px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .placeholder-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            color: #38bdf8;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 6px;
+        }
+
+        /* =========================================================
+           STAGE 6.6 EMPLOYEE MANAGEMENT & MODAL STYLING (POLISHED)
+           ========================================================= */
+
+        /* Table Container & Layout */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.45);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .admin-table {
+            width: 100%;
+            min-width: 920px;
+            /* Prevents columns from squeezing or merging */
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .admin-table th {
+            background: rgba(15, 23, 42, 0.95);
+            color: #94a3b8;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            white-space: nowrap;
+        }
+
+        .admin-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .admin-table tbody tr {
+            transition: background-color 0.15s ease;
+        }
+
+        .admin-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .admin-table tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+
+        /* Status Chips */
+        .status-chip-completed {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #34d399;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-chip-pending {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            color: #fbbf24;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Centered Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: overlayFade 0.2s ease-out;
+        }
+
+        @keyframes overlayFade {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Modal Container */
+        .modal-container {
+            background: rgba(17, 24, 39, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            width: calc(100% - 32px);
+            max-width: 520px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            animation: modalScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalScaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Modal Header */
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: #f8fafc;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-close-modal {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 4px 8px;
+            line-height: 1;
+            border-radius: 8px;
+            transition: all 0.15s ease;
+        }
+
+        .btn-close-modal:hover {
+            color: #f8fafc;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Modal Body & Form Inputs */
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .input-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #e2e8f0;
+            letter-spacing: 0.01em;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 46px;
+            padding: 0 16px;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 10px;
+            color: #f8fafc;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .form-input::placeholder {
+            color: #64748b;
+        }
+
+        .form-input:focus {
+            background: rgba(15, 23, 42, 0.95);
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+        }
+
+        /* Modal Actions */
+        .modal-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 6px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #cbd5e1;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Primary Button inside modal */
+        #submitAddEmployeeBtn {
+            margin-top: 0;
+            width: auto;
+            padding: 10px 22px;
+            height: 44px;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .modal-container {
+                max-width: 100%;
+                border-radius: 16px;
+            }
+
+            .modal-body {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-backdrop"></div>
+
+    <div class="admin-layout">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="brand-section">
+                <div class="brand-badge">🏢</div>
+                <div class="brand-text">
+                    <h1 id="headerCompanyNameDisplay">SafeLift 360 Workspace</h1>
+                    <p><span style="color: #10b981; font-weight: 700;">● ACTIVE WORKSPACE</span> — Safety Oversight</p>
+                </div>
+            </div>
+
+            <div class="admin-user-nav">
+                <a href="index.html" class="btn-back-home" title="Return to SafeLift 360 Commercial Website">
+                    ← Back to SafeLift 360
+                </a>
+                <div class="admin-profile">
+                    <div class="admin-avatar" id="adminAvatar">A</div>
+                    <span class="admin-name" id="adminNameDisplay">Administrator</span>
+                </div>
+                <button class="btn-logout" id="adminLogoutBtn">Logout</button>
+            </div>
+        </header>
+
+        <!-- Navigation Bar / Tabs -->
+        <nav class="admin-nav-tabs">
+            <button class="nav-tab active" data-tab="dashboard">Dashboard</button>
+            <button class="nav-tab" data-tab="employees">Employees</button>
+            <button class="nav-tab" data-tab="results">Training Results</button>
+            <button class="nav-tab" data-tab="settings">Company Settings</button>
+        </nav>
+
+        <!-- TAB 1: DASHBOARD OVERVIEW -->
+        <div id="tab-dashboard" class="tab-pane active">
+            <section class="welcome-banner">
+                <div
+                    style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                    <div>
+                        <h1 style="font-size: 28px; font-weight: 800; color: #f8fafc; margin: 0; letter-spacing: -0.02em;"
+                            id="companyNameDisplay">Company Workspace</h1>
+                        <p style="color: #94a3b8; font-size: 14px; margin: 6px 0 0 0;">
+                            SafeLift 360 Company Administrator Workspace — Real-time Safety & Training Oversight
+                        </p>
+                    </div>
+                    <div
+                        style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); padding: 8px 16px; border-radius: 20px; color: #10b981; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 6px;">
+                        <span>●</span> Active Enterprise Workspace
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary Statistics Grid -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Employees</span>
+                        <span class="stat-icon">👥</span>
+                    </div>
+                    <div class="stat-value" id="statEmployees">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Completed</span>
+                        <span class="stat-icon">✅</span>
+                    </div>
+                    <div class="stat-value" id="statCompleted" style="color: #10b981;">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Pending</span>
+                        <span class="stat-icon">⏳</span>
+                    </div>
+                    <div class="stat-value" id="statPending" style="color: #fbbf24;">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Average Score</span>
+                        <span class="stat-icon">📊</span>
+                    </div>
+                    <div class="stat-value" id="statAvgScore" style="color: #38bdf8;">0%</div>
+                </div>
+            </section>
+
+            <!-- Workspace Overview Card -->
+            <section class="admin-card">
+                <h2 class="card-header-title">🏢 Company Workspace Overview</h2>
+                <p style="color: #94a3b8; font-size: 14px; margin: 0;">
+                    Your SafeLift 360 enterprise workspace is active. Manage your safety compliance, view training
+                    analytics, and track team certifications.
+                </p>
+
+                <div class="overview-details-grid">
+                    <div class="overview-item">
+                        <span class="item-label">Company Name</span>
+                        <span class="item-value" id="overviewCompanyName">-</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="item-label">Administrator / Contact</span>
+                        <span class="item-value" id="overviewContactPerson">-</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="item-label">Business Email</span>
+                        <span class="item-value" id="overviewEmail">-</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="item-label">Account Status</span>
+                        <span class="item-value">
+                            <span class="status-badge-approved" id="overviewStatus">APPROVED</span>
+                        </span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- TAB 2: EMPLOYEE MANAGEMENT -->
+        <div id="tab-employees" class="tab-pane hidden">
+            <section class="admin-card">
+                <div class="section-header">
+                    <h2 class="card-header-title">👥 Employee Management</h2>
+                    <button class="btn-primary" id="openAddEmployeeModalBtn"
+                        style="padding: 10px 18px; width: auto; font-size: 14px;">
+                        <span>+ Add Employee</span>
+                    </button>
+                </div>
+                <p style="color: #94a3b8; font-size: 14px; margin: 0;">
+                    Manage employee accounts, department assignments, and track individual training progress.
+                </p>
+
+                <div class="table-responsive" style="margin-top: 8px;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>Email</th>
+                                <th>Employee ID</th>
+                                <th>Department</th>
+                                <th>Training Status</th>
+                                <th>Score</th>
+                                <th>Created Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="companyEmployeeTableBody">
+                            <tr>
+                                <td colspan="8" style="text-align: center; color: #94a3b8; padding: 30px;">
+                                    ⏳ Loading employee directory...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- TAB 3: TRAINING RESULTS -->
+        <div id="tab-results" class="tab-pane hidden">
+            <section class="admin-card">
+                <div class="section-header">
+                    <h2 class="card-header-title">📊 Employee Training Results</h2>
+                </div>
+                <p style="color: #94a3b8; font-size: 14px; margin: 0 0 16px 0;">
+                    Real-time safety simulation scores and completion timestamps for all registered company employees.
+                </p>
+
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>Employee ID</th>
+                                <th>Department</th>
+                                <th>Score</th>
+                                <th>Status</th>
+                                <th>Completion Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="companyTrainingResultsTableBody">
+                            <tr>
+                                <td colspan="6" style="text-align: center; color: #94a3b8; padding: 30px;">
+                                    ⏳ Loading training results...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- TAB 5: COMPANY SETTINGS -->
+        <div id="tab-settings" class="tab-pane hidden">
+            <section class="admin-card">
+                <h2 class="card-header-title">⚙️ Company Settings</h2>
+                <p style="color: #94a3b8; font-size: 14px; margin: 0;">
+                    Registered company information and workspace configuration.
+                </p>
+
+                <div class="overview-details-grid">
+                    <div class="overview-item">
+                        <span class="item-label">Company Name</span>
+                        <span class="item-value" id="settingsCompanyName">-</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="item-label">Owner / Contact Person</span>
+                        <span class="item-value" id="settingsContactPerson">-</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="item-label">Registered Business Email</span>
+                        <span class="item-value" id="settingsEmail">-</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="item-label">Phone Number</span>
+                        <span class="item-value" id="settingsPhone">-</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="item-label">Workspace Status</span>
+                        <span class="item-value">
+                            <span class="status-badge-approved" id="settingsStatus">APPROVED</span>
+                        </span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="item-label">Account Role</span>
+                        <span class="item-value" style="color: #10b981;">Company Administrator</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Add Employee Modal Dialog -->
+    <div class="modal-overlay" id="addEmployeeModal" style="display: none;">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>+ Add New Employee</h3>
+                <button type="button" class="btn-close-modal" id="closeAddEmployeeModalCross">&times;</button>
+            </div>
+            <form id="addEmployeeForm" class="modal-body">
+                <div id="empModalAlert" class="status-alert error" style="display: none; width: 100%;">
+                    <span id="empModalAlertIcon">⚠️</span>
+                    <span id="empModalAlertText"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="empFullNameInput" class="input-label">Full Name</label>
+                    <input type="text" id="empFullNameInput" class="form-input" placeholder="e.g. John Smith" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="empEmailInput" class="input-label">Work Email Address</label>
+                    <input type="email" id="empEmailInput" class="form-input" placeholder="e.g. john@company.com"
+                        required>
+                </div>
+
+                <div class="input-group">
+                    <label for="empDeptInput" class="input-label">Department</label>
+                    <input type="text" id="empDeptInput" class="form-input" placeholder="e.g. Warehouse Operations"
+                        required>
+                </div>
+
+                <div class="input-group">
+                    <label for="empPasswordInput" class="input-label">Temporary Password</label>
+                    <input type="password" id="empPasswordInput" class="form-input" placeholder="Minimum 8 characters"
+                        required minlength="8">
+                    <span style="font-size: 12px; color: #64748b; margin-top: 2px;">Employee will use this password to
+                        log in via /login.html.</span>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="closeAddEmployeeModalBtn">Cancel</button>
+                    <button type="submit" class="btn-primary" id="submitAddEmployeeBtn">
+                        <span>Create Employee</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>

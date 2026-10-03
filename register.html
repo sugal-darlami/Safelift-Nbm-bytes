@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SafeLift 360 - Register Your Company for Workplace Safety Training">
+    <title>SafeLift 360 — Register Your Company</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Reusing Modern Dark Glassmorphism Stylesheet -->
+    <link rel="stylesheet" href="login.css">
+    <style>
+        .form-section-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            margin: 20px 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .notice-banner {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.5;
+        }
+
+        .notice-icon {
+            color: var(--color-primary);
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .success-card {
+            text-align: center;
+            padding: 32px 16px;
+        }
+
+        .success-icon-wrap {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(16, 185, 129, 0.05));
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
+        }
+
+        .success-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--color-text-main);
+            margin-bottom: 12px;
+        }
+
+        .success-message {
+            font-size: 0.975rem;
+            color: var(--color-text-muted);
+            line-height: 1.65;
+            margin-bottom: 28px;
+        }
+
+        .btn-back-home {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px;
+            background: var(--color-primary);
+            color: #042f2e;
+            font-weight: 700;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-back-home:hover {
+            background: var(--color-primary-hover);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background overlay elements -->
+    <div class="background-backdrop" aria-hidden="true"></div>
+    <div class="ambient-glow glow-1" aria-hidden="true"></div>
+    <div class="ambient-glow glow-2" aria-hidden="true"></div>
+
+    <main class="login-wrapper">
+        <div class="login-card" style="max-width: 520px;">
+
+            <!-- Top Safety Badge -->
+            <div class="card-badge">
+                <span class="pulse-dot" aria-hidden="true"></span>
+                <span>COMPANY REGISTRATION REQUEST</span>
+            </div>
+
+            <!-- Brand Header -->
+            <header class="brand-header">
+                <div class="brand-logo">
+                    <span class="logo-icon" aria-hidden="true">🛡️</span>
+                    <h1 class="brand-name">SAFE LIFT 360</h1>
+                </div>
+                <p class="brand-subtitle">Workplace Safety Training SaaS Platform</p>
+            </header>
+
+            <!-- Card Divider -->
+            <div class="divider" aria-hidden="true"></div>
+
+            <!-- SUCCESS CONFIRMATION VIEW (Hidden by default) -->
+            <div id="successCard" class="success-card" style="display: none;">
+                <div class="success-icon-wrap">🛡️</div>
+                <h2 class="success-title">Registration Request Submitted</h2>
+                <p class="success-message">
+                    Thank you for registering your company with SafeLift 360.<br><br>
+                    Your registration request has been submitted successfully and is currently awaiting review.<br><br>
+                    You will be able to access your company dashboard after your request has been approved.
+                </p>
+                <a href="/" class="btn-back-home" id="backToHomeBtn">
+                    <span>← Back to SafeLift 360</span>
+                </a>
+            </div>
+
+            <!-- REGISTRATION FORM CONTAINER -->
+            <div id="formContainer">
+
+                <!-- Welcome / Section Title -->
+                <div class="welcome-section">
+                    <h2 class="welcome-title">Register Your Company</h2>
+                    <p class="welcome-text">Start using SafeLift 360 for your workplace safety training. Submit your company details below. Your registration request will be reviewed before access is granted.</p>
+                </div>
+
+                <!-- Review Notice Banner -->
+                <div class="notice-banner">
+                    <span class="notice-icon" aria-hidden="true">ℹ️</span>
+                    <div>Your company registration will be reviewed by the SafeLift 360 administrator before access is granted.</div>
+                </div>
+
+                <!-- Dynamic Alert / Notice Box -->
+                <div id="statusAlert" class="status-alert" role="status" aria-live="polite" style="display: none;">
+                    <span class="alert-icon" id="alertIcon" aria-hidden="true">ℹ️</span>
+                    <span class="alert-text" id="alertText"></span>
+                </div>
+
+                <!-- Company Registration Form -->
+                <form id="registerForm" class="login-form" novalidate>
+
+                    <!-- SECTION 1: COMPANY INFORMATION -->
+                    <div class="form-section-title">
+                        <span>🏢 Company Information</span>
+                    </div>
+
+                    <!-- Company Name Input Group -->
+                    <div class="input-group" id="companyNameGroup">
+                        <label for="companyNameInput" class="input-label">Company Name <span style="color: var(--color-error);">*</span></label>
+                        <div class="input-control">
+                            <span class="control-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 21h18"></path>
+                                    <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+                                    <path d="M9 9h6"></path>
+                                    <path d="M9 13h6"></path>
+                                    <path d="M9 17h6"></path>
+                                </svg>
+                            </span>
+                            <input
+                                type="text"
+                                id="companyNameInput"
+                                name="company_name"
+                                class="text-input"
+                                placeholder="Acme Logistics Ltd"
+                                required
+                            >
+                        </div>
+                        <span class="field-error" id="companyNameError" aria-live="polite"></span>
+                    </div>
+
+                    <!-- Contact Person Input Group -->
+                    <div class="input-group" id="contactPersonGroup">
+                        <label for="contactPersonInput" class="input-label">Contact Person / Owner Name <span style="color: var(--color-error);">*</span></label>
+                        <div class="input-control">
+                            <span class="control-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </span>
+                            <input
+                                type="text"
+                                id="contactPersonInput"
+                                name="contact_person"
+                                class="text-input"
+                                placeholder="Jane Smith"
+                                autocomplete="name"
+                                required
+                            >
+                        </div>
+                        <span class="field-error" id="contactPersonError" aria-live="polite"></span>
+                    </div>
+
+                    <!-- Business Email Input Group -->
+                    <div class="input-group" id="emailGroup">
+                        <label for="emailInput" class="input-label">Business Email Address <span style="color: var(--color-error);">*</span></label>
+                        <div class="input-control">
+                            <span class="control-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                </svg>
+                            </span>
+                            <input
+                                type="email"
+                                id="emailInput"
+                                name="email"
+                                class="text-input"
+                                placeholder="jane@acmelogistics.com"
+                                autocomplete="email"
+                                required
+                            >
+                        </div>
+                        <span class="field-error" id="emailError" aria-live="polite"></span>
+                    </div>
+
+                    <!-- Phone Input Group (Optional) -->
+                    <div class="input-group" id="phoneGroup">
+                        <label for="phoneInput" class="input-label">Phone Number <small style="opacity: 0.7; font-weight: normal;">(Optional)</small></label>
+                        <div class="input-control">
+                            <span class="control-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </span>
+                            <input
+                                type="tel"
+                                id="phoneInput"
+                                name="phone"
+                                class="text-input"
+                                placeholder="+44 20 7946 0912"
+                                autocomplete="tel"
+                            >
+                        </div>
+                        <span class="field-error" id="phoneError" aria-live="polite"></span>
+                    </div>
+
+                    <!-- SECTION 2: ACCOUNT SECURITY -->
+                    <div class="form-section-title">
+                        <span>🔐 Account Security</span>
+                    </div>
+
+                    <!-- Password Input Group -->
+                    <div class="input-group" id="passwordGroup">
+                        <label for="passwordInput" class="input-label">Password <span style="color: var(--color-error);">*</span></label>
+                        <div class="input-control">
+                            <span class="control-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </span>
+                            <input
+                                type="password"
+                                id="passwordInput"
+                                name="password"
+                                class="text-input"
+                                placeholder="At least 8 characters"
+                                autocomplete="new-password"
+                                required
+                            >
+                        </div>
+                        <span class="field-error" id="passwordError" aria-live="polite"></span>
+                    </div>
+
+                    <!-- Confirm Password Input Group -->
+                    <div class="input-group" id="confirmPasswordGroup">
+                        <label for="confirmPasswordInput" class="input-label">Confirm Password <span style="color: var(--color-error);">*</span></label>
+                        <div class="input-control">
+                            <span class="control-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                            </span>
+                            <input
+                                type="password"
+                                id="confirmPasswordInput"
+                                name="confirm_password"
+                                class="text-input"
+                                placeholder="Re-enter your password"
+                                autocomplete="new-password"
+                                required
+                            >
+                        </div>
+                        <span class="field-error" id="confirmPasswordError" aria-live="polite"></span>
+                    </div>
+
+                    <!-- Submit Registration Button -->
+                    <button type="submit" id="submitRequestBtn" class="btn-primary">
+                        <span>Submit Registration Request</span>
+                        <span class="btn-arrow" aria-hidden="true">→</span>
+                    </button>
+
+                </form>
+
+                <!-- Card Footer -->
+                <footer class="card-footer">
+                    <p class="signup-prompt">
+                        Already registered your company?
+                        <a href="login.html" class="signup-link" id="signInLink">Sign In</a>
+                    </p>
+
+                    <div class="prototype-nav">
+                        <span class="proto-divider"></span>
+                        <a href="/" class="proto-link" title="Return to SafeLift 360 Commercial Site">
+                            ← Back to SafeLift 360
+                        </a>
+                    </div>
+                </footer>
+
+            </div>
+
+        </div>
+
+        <!-- Compliance Footnote -->
+        <aside class="compliance-note">
+            <span>🛡️ SafeLift 360 Workplace Safety Standards</span>
+            <span class="dot">•</span>
+            <span>OSHA & ISO Manual Handling Compliant</span>
+        </aside>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="register.js"></script>
+</body>
+
+</html>
