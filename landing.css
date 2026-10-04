@@ -937,6 +937,34 @@ body {
     gap: 12px;
 }
 
+/* Developer Branding (NBM Bytes) */
+.developer-branding {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.developer-logo {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    border-radius: 4px;
+    opacity: 0.9;
+    transition: var(--transition-fast);
+}
+
+.developer-branding:hover .developer-logo {
+    opacity: 1;
+    transform: scale(1.08);
+}
+
+.developer-name {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
     .hero-grid {
@@ -971,6 +999,12 @@ body {
 }
 
 @media (max-width: 768px) {
+    .footer-bottom {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+    }
     .nav-links, .nav-actions {
         display: none;
     }
